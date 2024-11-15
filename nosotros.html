@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Blue Cloud">
+        <meta name="description"
+            content="Sitio Web de comercio electronico acerca de una tienda de vestidos para XV años" />
+        <meta name="keywords" content="Vestidos, XV Años, Bodas" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="data:," />
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Iconos -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+            rel='stylesheet'>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet">
+
+        <!-- Estilos locales -->
+        <link href="recursos/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link href="recursos/css/estilos.css" rel="stylesheet">
+        <link href="recursos/css/cabecera.css" rel="stylesheet">
+        <link href="recursos/css/pie.css" rel="stylesheet">
+
+        <title>D'Italia</title>
+
+        <script type="module" src="lib/js/muestraError.js"></script>
+        <script type="module" src="./js/protege.js"></script>
+        <script type="module" src="./js/custom/mi-nav.js"></script>
+        <script type="module" src="./js/custom/mi-banner.js"></script>
+        <script type="module" src="./js/custom/mi-breadcrumb.js"></script>
+        <script type="module" src="./js/custom/mi-footer.js"></script>
+    </head>
+    <body onload="protege('srv/sesion-actual.php')
+    .then(sesion => {
+        nav.sesion = sesion
+        footer.sesion = sesion
+    })
+    .catch(muestraError)">
+
+        <mi-nav id="nav"></mi-nav>
+
+        <mi-banner id="banner"></mi-banner>
+
+        <mi-breadcrumb id="breadcrumb"></mi-breadcrumb>
+
+        <!--Inicio seccion ¿Quienes somos?-->
+        <div class="quienes">
+            <div class="container">
+                <div class="row d-flex align-items-center">
+                    <!-- Columna para la tarjeta -->
+                    <div
+                        class="col-12 col-lg-6 mb-lg-0 d-flex justify-content-center">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <h5 class="card-title">¿Qué somos?</h5>
+                                <p class="card-text">D'Italia es mucho más que
+                                    una tienda de vestidos, somos un símbolo de
+                                    elegancia, tradición y belleza en el mundo
+                                    de las quinceañeras. Con una trayectoria de
+                                    más de una década en el mercado, nos hemos
+                                    especializado en la confección y venta de
+                                    vestidos de XV años, ofreciendo una amplia
+                                    gama de opciones que combinan calidad,
+                                    estilo y precios accesibles.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Columna para la imagen (o párrafo)-->
+                    <div
+                        class="col-12 col-lg-6 mt-2 d-flex justify-content-center">
+                        <div class="img-wrap">
+                            <img
+                                src="recursos/images/quienes.jpg"
+                                class="img-fluid somos" alt="Quienes">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fin seccion ¿Quienes somos?-->
+
+        <!-- Start Why Choose Us Section -->
+        <div class="why-choose-section contenedor">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-lg-6">
+                        <h2 class="section-title">¿Por qué elegirnos?</h2>
+                        <p class="fs-5">Elegirnos significa optar por calidad,
+                            exclusividad y atención personalizada. Nuestros
+                            vestidos están confeccionados con materiales de
+                            excelente calidad, garantizando comodidad y un
+                            acabado impecable. Nos dedicamos a realzar tu
+                            belleza y estilo, ofreciendo diseños únicos que se
+                            adaptan a tu personalidad.</p>
+                        <div class="row my-5">
+                            <div class="col-6 col-md-6">
+                                <div class="feature">
+                                    <div class="icon">
+                                        <i class='bx bx-nos bx-time'></i>
+                                    </div>
+                                    <h3 class="fs-5">Horario de atención</h3>
+                                    <p class="fs-6">Nuestro horario de atención
+                                        es de 11:00 a 17:00. Visítanos y
+                                        encuentra el vestido perfecto para tu
+                                        quinceañera.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="feature">
+                                    <div class="icon">
+                                        <i class='bx bx-nos bx-calendar'></i>
+                                    </div>
+                                    <h3 class="fs-5">Sistema de apartado</h3>
+                                    <p class="fs-6">Puedes apartar tu vestido
+                                        con un mínimo de $1000. Asegura el
+                                        vestido de tus sueños para tu gran
+                                        día.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="feature">
+                                    <div class="icon">
+                                        <i class='bx bx-nos bx-brush'></i>
+                                    </div>
+                                    <h3 class="fs-5">Diseños personalizados</h3>
+                                    <p class="fs-6">Si tienes un diseño en
+                                        mente, tráelo y haremos realidad el
+                                        vestido de tus sueños adaptandolo a un
+                                        precio justo.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-6">
+                                <div class="feature">
+                                    <div class="icon">
+                                        <i class='bx bx-nos bx-timer'></i>
+                                    </div>
+                                    <h3 class="fs-5">Entrega puntual</h3>
+                                    <p class="fs-6">Nos comprometemos a entregar
+                                        los vestidos puntualmente antes del
+                                        evento, asegurando que todo esté
+                                        perfecto para tu celebración.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="img-wrap">
+                            <img src="recursos/images/nosotros-1.jpg"
+                                alt="Nosotros"
+                                class="img-fluid">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Why Choose Us Section -->
+
+        <!-- Start Team Section -->
+        <div class="container pt-5">
+            <div class="row mb-3">
+                <div class="col-lg-5 mx-auto text-center">
+                    <h2 class="section-title">Nuestro Equipo</h2>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="card" style="width: 25rem; border:none;">
+                    <img src="recursos/images/equipo.jpeg"
+                        class="img-fluid card-img-top" alt="Equipo">
+                    <div class="card-body text-center">
+                        <p class="card-text">
+                            <h5>Eduardo Ceballos</h5>Encargado, vendedor.
+                            <hr>
+                            <h5>Ericka Vazquez</h5>Dueña.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <mi-footer id="footer"></mi-footer>
+
+        <!-- Scripts cdn -->
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+        <!-- Scripts locales -->
+        <script src="recursos/js/bootstrap.bundle.min.js"></script>
+        <script src="recursos/js/scripts.js"></script>
+    </body>
+</html>

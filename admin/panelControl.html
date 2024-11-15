@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Blue Cloud">
+        <meta name="description"
+            content="Sitio Web de comercio electronico acerca de una tienda de vestidos para XV años" />
+        <meta name="keywords" content="Vestidos, XV Años, Bodas" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="data:," />
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Iconos -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+            rel='stylesheet'>
+
+        <!-- Estilos locales -->
+        <link href="../recursos/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link href="../recursos/css/estilos.css" rel="stylesheet">
+        <link href="../recursos/css/cabecera.css" rel="stylesheet">
+        <link href="../recursos/css/panelControl.css" rel="stylesheet">
+
+        <title>D'Italia</title>
+
+        <script type="module" src="../lib/js/muestraError.js"></script>
+        <script type="module" src="../js/ROL_ID_ADMINISTRADOR.js"></script>
+        <script type="module" src="../js/protege.js"></script>
+        <script type="module" src="../js/custom/mi-nav.js"></script>
+        <script type="module" src="../js/custom/mi-breadcrumb.js"></script>
+    </head>
+    <body
+        onload="protege('../srv/sesion-actual.php', [ROL_ID_ADMINISTRADOR], '../index.html')
+        .then(sesion => {
+            nav.sesion = sesion
+            main.hidden = false
+        })
+        .catch(muestraError)
+    ">
+
+        <mi-nav id="nav"></mi-nav>
+
+        <mi-breadcrumb id="breadcrumb"></mi-breadcrumb>
+
+        <main id="main" hidden>
+            <div class="container">
+                <h1 class="text-center">Panel de Control</h1>
+                <h5 class="text-center">¿Qué acción desea realizar hoy?</h5>
+                <div class="cardss mt-5">
+                    <a href="../admin/accesoriosAdmin.html" class="card c1">
+                        <p class="tip mt-2 fs-4"">Accesorios <br>
+                            <i class=" fas fa-gift fa-2x"></i>
+                        </p>
+                    </a>
+                    <a href="../admin/categoriasAdmin.html" class="card c1">
+                        <p class="tip mt-2 fs-4"">Categorías <br>
+                            <i class=" fas fa-list fa-2x"></i>
+                        </p>
+                    </a>
+                    <a href="../admin/citasAdmin.html" class="card c1">
+                        <p class="tip mt-2 fs-4"">Citas<br>
+                            <i class=" fa-regular fa-calendar-check fa-2x"></i>
+                        </p>
+                    </a>
+                    <a href="../admin/coloresAdmin.html" class="card c1">
+                        <p class="tip mt-2 fs-4"">Colores <br>
+                            <i class=" fas fa-palette fa-2x"></i>
+                        </p>
+                    </a>
+                    <a href="../admin/contactosAdmin.html" class="card c1">
+                        <p class="tip mt-2 fs-4"">Contacto <br>
+                            <i class=" fa-regular fa-address-book fa-2x"></i>
+                        </p>
+                    </a>
+                    <a href="../admin/serviciosAdmin.html" class="card c1">
+                        <p class="tip mt-2 fs-4"">Servicios <br>
+                            <i class=" fas fa-hand-holding-dollar fa-2x"></i>
+                        </p>
+                    </a>
+                    <a href="../admin/tallasAdmin.html" class="card c1">
+                        <p class="tip mt-2 fs-4"">Tallas <br>
+                            <i class=" fas fa-ruler fa-2x"></i>
+                        </p>
+                    </a>
+                    <a href="../admin/usuariosAdmin.html" class="card c1">
+                        <p class="tip mt-2 fs-4"">Usuarios <br>
+                            <i class=" fas fa-user fa-2x"></i>
+                        </p>
+                    </a>
+                    <a href="../admin/ventasAdmin.html" class="card c1">
+                        <p class="tip mt-2 fs-4"">Ventas <br>
+                            <i class=" fas fa-dollar-sign fa-2x"></i>
+                        </p>
+                    </a>
+                    <a href="../admin/vestidosAdmin.html" class="card c1">
+                        <p class="tip mt-2 fs-4"">Vestidos <br>
+                            <i class=" fas fa-person-dress fa-2x"></i>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Scripts cdn -->
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+        <!-- Scripts locales -->
+        <script src="../recursos/js/bootstrap.bundle.min.js"></script>
+        <script src="../recursos/js/scripts.js"></script>
+    </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Blue Cloud">
+        <meta name="description"
+            content="Sitio Web de comercio electronico acerca de una tienda de vestidos para XV años" />
+        <meta name="keywords" content="Vestidos, XV Años, Bodas" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="data:," />
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Iconos -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+            rel='stylesheet'>
+
+        <!-- Estilos locales -->
+        <link href="recursos/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link href="recursos/css/estilos.css" rel="stylesheet">
+        <link href="recursos/css/cabecera.css" rel="stylesheet">
+        <link href="recursos/css/iniciarSesion.css"
+            rel="stylesheet">
+        <link href="recursos/css/pie.css" rel="stylesheet">
+
+        <title>D'Italia</title>
+
+        <script type="module" src="lib/js/submitForm.js"></script>
+        <script type="module" src="lib/js/muestraError.js"></script>
+        <script type="module" src="./js/protege.js"></script>
+        <script type="module" src="./js/custom/mi-nav.js"></script>
+        <script type="module" src="./js/custom/mi-breadcrumb.js"></script>
+        <script type="module" src="./js/custom/mi-footer.js"></script>
+    </head>
+    <body onload="protege('srv/sesion-actual.php')
+    .then(sesion => {
+        nav.sesion = sesion
+        footer.sesion = sesion
+        if (sesion.cue !== '') {
+            location.href = 'index.html'
+        }
+    })
+    .catch(muestraError)">
+
+        <mi-nav id="nav"></mi-nav>
+
+        <mi-breadcrumb id="breadcrumb"></mi-breadcrumb>
+
+        <div class="login-page-container">
+
+            <!-- Contenedor para el formulario -->
+            <div class="form-container">
+
+                <div class="login-header">Iniciar Sesión</div>
+                <div id="login-form" class="form-content">
+                    <form id="login"
+                        onsubmit="submitForm('srv/login.php', event)
+                        .then(sesion => location.href = 'perfil.html')
+                        .catch(muestraError)">
+                        <input type="text" id="cue" name="cue" placeholder="Cue"
+                            autofocus>
+                        <input type="password" id="match" name="match"
+                            placeholder="Match">
+                        <button type="submit"
+                            class="btn btn-secondary btn-lg py-1 btn-block"
+                            style="display: block; margin-left: auto; margin-right: auto; width: 50%;">Ingresar</button>
+                    </form>
+                    <div class="footer">
+                        ¿No tienes cuenta? <a
+                            href="registro.html">Regístrate</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Contenedor para la imagen -->
+            <div class="image-container">
+
+                <img src="recursos/images/plantilla/logo-ilustracion.png"
+                    alt="Login Image">
+
+            </div>
+
+        </div>
+
+        <mi-footer id="footer"></mi-footer>
+
+        <!-- Scripts cdn -->
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    </body>
+</html>

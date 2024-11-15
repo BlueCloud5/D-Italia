@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Blue Cloud">
+        <meta name="description"
+            content="Sitio Web de comercio electronico acerca de una tienda de vestidos para XV años" />
+        <meta name="keywords" content="Vestidos, XV Años, Bodas" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="data:," />
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Iconos -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+            rel='stylesheet'>
+
+        <!-- Estilos locales -->
+        <link href="../recursos/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link href="../recursos/css/estilos.css" rel="stylesheet">
+        <link href="../recursos/css/cabecera.css" rel="stylesheet">
+
+        <title>D'Italia</title>
+
+        <script type="module" src="../lib/js/muestraError.js"></script>
+        <script type="module" src="../js/ROL_ID_CLIENTE.js"></script>
+        <script type="module" src="../js/protege.js"></script>
+        <script type="module" src="../js/custom/mi-nav.js"></script>
+        <script type="module" src="../js/custom/mi-breadcrumb.js"></script>
+    </head>
+    <body
+        onload="protege('../srv/sesion-actual.php', [ROL_ID_CLIENTE], '../index.html')
+        .then(sesion => {
+            nav.sesion = sesion
+            main.hidden = false
+        })
+        .catch(muestraError)
+    ">
+
+        <mi-nav id="nav"></mi-nav>
+
+        <mi-breadcrumb id="breadcrumb"></mi-breadcrumb>
+
+        <!-- Inicio Formulario Citas -->
+        <main id="main" hidden>
+            <div class="untree_co-section pb-1">
+                <div class="container">
+                    <div class="block">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 col-lg-8 pb-0">
+                                <form method="POST">
+                                    <div class="form-group mb-2">
+                                        <input type="hidden"
+                                            class="form-control"
+                                            id="usuario" name="usuario"
+                                            value="<?php if ($_SESSION["validarSesionBackend"]
+                                            = "no") echo
+                                            $id_usuario=$_SESSION['id_usuario'];
+                                            ?>">
+                                        <label class="text-black">Seleccione una
+                                            fecha<span
+                                                class="text-danger">*</span></label>
+                                        <input type="date" class="form-control"
+                                            id="fecha" name="fecha"
+                                            min="2024-01-01"
+                                            max="2030-12-31" required>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label class="text-black">Seleccione una
+                                            hora (entre las 11:00 AM y 17:00
+                                            PM)<span
+                                                class="text-danger">*</span></label>
+                                        <input type="time" class="form-control"
+                                            id="hora" name="hora" min="11:00"
+                                            max="17:00" step="1800" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-black">Seleccione un
+                                            servicio<span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-control mb-2"
+                                            id="servicio" name="servicio"
+                                            required>
+                                            <option value>Selecciona un
+                                                servicio</option>
+                                            <?php
+
+                                            $item = null;
+                                            $valor = null;
+                                            $servicios =
+                                            ControladorServicios::ctrlMostrarServicios($item,
+                                            $valor);
+
+                                            foreach ($servicios as $key =>
+                                            $value) {
+                                            echo '<option
+                                                value=' . $value["id_servicio"] . '>' . $value["nombre"] . '</option>';
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                    <!-- Botón de enviar -->
+                                    <div class="d-grid gap-2 col-6 mx-auto">
+                                        <button type="submit"
+                                            class="btn btn-secondary text-center">Agendar
+                                            cita</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- Fin Formulario Citas -->
+
+        <!-- Scripts cdn -->
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+        <!-- Scripts locales -->
+        <script src="../recursos/js/bootstrap.bundle.min.js"></script>
+        <script src="../recursos/js/scripts.js"></script>
+    </body>
+</html>

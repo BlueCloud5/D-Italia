@@ -1,0 +1,7 @@
+<?php
+
+const CATEGORIA = "CATEGORIA";
+const CAT_ID = "CAT_ID";
+const CAT_NOMBRE = "CAT_NOMBRE";
+const CAT_DESCRIPCION = "CAT_DESCRIPCION";
+const CAT_ESTADO = "CAT_ESTADO";

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Blue Cloud">
+        <meta name="description"
+            content="Sitio Web de comercio electronico acerca de una tienda de vestidos para XV años" />
+        <meta name="keywords" content="Vestidos, XV Años, Bodas" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="data:," />
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Iconos -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+            rel='stylesheet'>
+
+        <!-- Estilos locales -->
+        <link href="recursos/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link href="recursos/css/estilos.css" rel="stylesheet">
+        <link href="recursos/css/cabecera.css" rel="stylesheet">
+        <link href="recursos/css/inicio.css" rel="stylesheet">
+        <link href="recursos/css/pie.css" rel="stylesheet">
+
+        <title>D'Italia</title>
+
+        <script type="module" src="lib/js/muestraError.js"></script>
+        <script type="module" src="./js/protege.js"></script>
+        <script type="module" src="./js/custom/mi-nav.js"></script>
+        <script type="module" src="./js/custom/mi-footer.js"></script>
+    </head>
+    <body onload="protege('srv/sesion-actual.php')
+    .then(sesion => {
+        nav.sesion = sesion
+        footer.sesion = sesion
+    })
+    .catch(muestraError)">
+
+        <mi-nav id="nav"></mi-nav>
+
+        <div class="hero">
+            <div class="carousel">
+                <div class="carousel-item active"
+                    style="background-image: url('recursos/images/carrusel/carrusel-1.jpg');"></div>
+                <div class="carousel-item"
+                    style="background-image: url('recursos/images/carrusel/carrusel-2.jpg');"></div>
+                <div class="carousel-item"
+                    style="background-image: url('recursos/images/carrusel/carrusel-3.jpg');"></div>
+                <div class="carousel-item"
+                    style="background-image: url('recursos/images/carrusel/carrusel-4.jpg');"></div>
+                <div class="carousel-item"
+                    style="background-image: url('recursos/images/carrusel/carrusel-5.jpg');"></div>
+                <div class="carousel-item"
+                    style="background-image: url('recursos/images/carrusel/carrusel-6.jpg');"></div>
+            </div>
+            <div class="container text-center content">
+                <h1 class="letrasC" style="color: #E6C3AA; font-size: 100px;">D
+                    ' ITALIA</h1>
+                <p class="mb-4 fs-2 lh-base mb-5"
+                    style="color: #ffffff;">Encuentra el vestido ideal para tu
+                    quinceañera en nuestra tienda. Cada detalle está impregnado
+                    de elegancia y glamour para hacer de tu día especial algo
+                    inolvidable</p>
+                <div class="row">
+                    <div class="col">
+                        <p><a href="catalogo.html"
+                                class="btn btn-white-outline">Explorar</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Product Section -->
+        <div class="product-section mt-5">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Start Column 1 -->
+                    <div class="col-md-12 col-lg-3 mb-5 mb-lg-0 mt-2">
+                        <h2 class="mb-4 section-title">Hechos con un excelente
+                            material.</h2>
+                        <p class="mb-4 lh-base fs-5 text-justify">Hechos con un
+                            excelente material, nuestros vestidos para
+                            quinceañeras combinan elegancia y glamour,
+                            asegurando que te sientas única en tu día especial.
+                            Encuentra el vestido perfecto para brillar en tu
+                            celebración.</p>
+                        <p><a href="catalogo.html"
+                                class="btn btn-secondary btn-lg py-1 btn-block">Explorar</a></p>
+                    </div>
+                    <!-- End Column 1 -->
+
+                    <!-- Start Column 2 -->
+                    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                        <a class="product-item" href="#">
+                            <img
+                                src="recursos/images/plantilla/Valeria.png"
+                                class="img-fluid product-thumbnail">
+                            <h3 class="product-title">Modelo Valeria</h3>
+                            <strong class="product-price">$10000.00</strong>
+                            <span class="icon-cross">
+                                <img src="recursos/images/cross.svg"
+                                    class="img-fluid">
+                            </span>
+                        </a>
+                    </div>
+                    <!-- End Column 2 -->
+
+                    <!-- Start Column 3 -->
+                    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                        <a class="product-item" href="#">
+                            <img
+                                src="recursos/images/plantilla/Carolina.png"
+                                class="img-fluid product-thumbnail">
+                            <h3 class="product-title">Modelo Carolina</h3>
+                            <strong class="product-price">$8499.99</strong>
+
+                            <span class="icon-cross">
+                                <img src="recursos/images/cross.svg"
+                                    class="img-fluid">
+                            </span>
+                        </a>
+                    </div>
+                    <!-- End Column 3 -->
+
+                    <!-- Start Column 4 -->
+                    <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                        <a class="product-item" href="#">
+                            <img
+                                src="recursos/images/plantilla/Samantha.png"
+                                class="img-fluid product-thumbnail">
+                            <h3 class="product-title">Modelo Samantha</h3>
+                            <strong class="product-price">$10000.00</strong>
+
+                            <span class="icon-cross">
+                                <img src="recursos/images/cross.svg"
+                                    class="img-fluid">
+                            </span>
+                        </a>
+                    </div>
+                    <!-- End Column 4 -->
+
+                </div>
+            </div>
+        </div>
+        <!-- End Product Section -->
+
+        <!--Inicio galeria-->
+        <section class="gallery" id="galeria">
+            <div class="contenedor">
+                <h2 class="section-title text-center fs-1">Galería</h2>
+                <div class="contenedor-galeria">
+                    <img src="recursos/images/galeria/galeria-2.jpg"
+                        class="img-galeria ms-4"
+                        alt>
+                    <img src="recursos/images/galeria/galeria-3.jpg"
+                        class="img-galeria ms-4"
+                        alt>
+                    <img src="recursos/images/galeria/galeria-4.jpg"
+                        class="img-galeria ms-4"
+                        alt>
+                    <img src="recursos/images/galeria/galeria-5.jpg"
+                        class="img-galeria ms-4"
+                        alt>
+                    <img src="recursos/images/galeria/galeria-7.jpg"
+                        class="img-galeria ms-4"
+                        alt>
+                    <img src="recursos/images/galeria/galeria-8.jpg"
+                        class="img-galeria ms-4"
+                        alt>
+                </div>
+            </div>
+        </section>
+        <div class="imagen-light">
+            <img src="recursos/images/closeLight.svg"
+                alt="cerrar" class="close">
+            <img src alt class="agregar-imagen">
+        </div>
+        <!--Fin galeria-->
+
+        <!-- inicio productos mas vendidos-->
+        <div class="masVendidoTitulo">
+            <h2 class="section-title text-center fs-1 mt-4">LO MÁS RECIENTE</h2>
+        </div>
+        <!-- <div class="container">
+            <div
+                class="untree_co-section product-section before-footer-section">
+                <div class="row">
+                    <?php
+                    $vestidosArreglo = [];
+                    $vestidos = ControladorVestidos::ctrlMostrarVestidos(null,
+                    null);
+
+                    foreach ($vestidos as $vestido) {
+                    if ($vestido["estado"] == 1) {
+                    $vestidosArreglo[] = $vestido; // Agregar el vestido al
+                    arreglo
+                    }
+                    }
+
+                    // Obtener los últimos 3 vestidos
+                    $ultimosVestidos = array_slice($vestidosArreglo, -3);
+
+                    foreach ($ultimosVestidos as $vestido) {
+                    echo '
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <a class="product-item text-center d-block" href="#">
+                            <img src="' . $vestido["foto"] .
+                                '" class="img-fluid product-thumbnail" alt="' .
+                                $vestido["modelo"] . '">
+                            <h3
+                                class="product-title mt-3">' . $vestido["modelo"] . '</h3>
+                            <strong class="product-price">$
+                                ' . $vestido["precio"] . '</strong>
+                            <span class="icon-cross">
+                                <img
+                                    src="https://d-italia.shop/recursos/images/cross.svg"
+                                    class="img-fluid">
+                            </span>
+                        </a>
+                    </div>
+                    ';
+                    }
+                    ?>
+                </div>
+            </div>
+        </div> -->
+        <!-- Final Productos mas vendidos -->
+
+        <!-- Modal de Términos y Condiciones -->
+        <div class="modal fade" id="modalTerminosCondiciones"
+            data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div
+                class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header" style="justify-content: center;">
+                        <h5 class="modal-title fw-bold text-center w-100"
+                            id="staticBackdropLabel">Términos y Condiciones de
+                            D'Italia</h5>
+                    </div>
+                    <div class="modal-body" style="text-align: justify;">
+                        <p>Bienvenido/a a D'Italia, tu destino para encontrar
+                            vestidos de XV Años y Boda exclusivos y elegantes. A
+                            continuación, presentamos nuestros términos y
+                            condiciones que rigen la relación entre D'Italia y
+                            nuestros estimados clientes:</p>
+                        <ol>
+                            <li><strong>Objeto</strong>
+                                <ol>
+                                    <li><strong>Descripción del
+                                            Servicio:</strong> D'Italia ofrece a
+                                        través de su plataforma de eCommerce la
+                                        venta de vestidos de XV Años y Boda,
+                                        diseñados y confeccionados con
+                                        materiales de alta calidad.</li>
+                                    <li><strong>Productos:</strong> Los
+                                        productos ofrecidos en nuestro sitio web
+                                        están sujetos a disponibilidad y pueden
+                                        variar en diseño, color y tamaño. Nos
+                                        esforzamos por proporcionar
+                                        descripciones precisas y fotografías de
+                                        alta calidad para representar nuestros
+                                        productos de manera exacta.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Condiciones de Uso</strong>
+                                <ol>
+                                    <li><strong>Aceptación:</strong> Al acceder
+                                        y utilizar nuestro sitio web, aceptas
+                                        cumplir con estos términos y
+                                        condiciones. Si no estás de acuerdo con
+                                        alguna parte de estos términos, te
+                                        solicitamos que no utilices nuestros
+                                        servicios.</li>
+                                    <li><strong>Registro:</strong> Para realizar
+                                        una compra, es posible que necesites
+                                        registrarte en nuestro sitio
+                                        proporcionando información precisa y
+                                        completa. Eres responsable de mantener
+                                        la confidencialidad de tu cuenta y
+                                        contraseña.</li>
+                                    <li><strong>Uso Adecuado:</strong> El uso de
+                                        nuestro sitio web está destinado
+                                        únicamente para la compra de productos y
+                                        no para cualquier otro propósito ilegal
+                                        o no autorizado.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Compras y Pagos</strong>
+                                <ol>
+                                    <li><strong>Precio y Métodos de
+                                            Pago:</strong> Los precios de los
+                                        productos están indicados en la moneda
+                                        local y pueden estar sujetos a cambios
+                                        sin previo aviso. Aceptamos varios
+                                        métodos de pago seguros que se detallan
+                                        en nuestro sitio web.</li>
+                                    <li><strong>Confirmación de Pedido:</strong>
+                                        Al realizar un pedido, recibirás una
+                                        confirmación por correo electrónico con
+                                        los detalles de tu compra. Esta
+                                        confirmación no representa la aceptación
+                                        de tu pedido, sino una confirmación de
+                                        que lo hemos recibido.</li>
+                                    <li><strong>Disponibilidad:</strong> Nos
+                                        esforzamos por mantener actualizado
+                                        nuestro inventario, pero en caso de que
+                                        un producto no esté disponible después
+                                        de realizar tu pedido, te informaremos y
+                                        procederemos con la cancelación o la
+                                        entrega parcial del pedido según tu
+                                        elección.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Entregas</strong>
+                                <ol>
+                                    <li><strong>Recepción de Productos:</strong>
+                                        Es responsabilidad del cliente verificar
+                                        el estado de los productos recibidos y
+                                        notificar cualquier problema dentro de
+                                        las 48 horas posteriores a la
+                                        recepción.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Derechos de Propiedad
+                                    Intelectual</strong>
+                                <ol>
+                                    <li><strong>Propiedad:</strong> Todos los
+                                        derechos de propiedad intelectual sobre
+                                        los productos, marcas registradas,
+                                        logotipos y contenido del sitio web
+                                        pertenecen a D'Italia. Está prohibida
+                                        cualquier reproducción, distribución o
+                                        uso no autorizado.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Limitación de Responsabilidad</strong>
+                                <ol>
+                                    <li><strong>Uso del Sitio:</strong> D'Italia
+                                        no será responsable por cualquier daño
+                                        directo, indirecto, incidental o
+                                        consecuente derivado del uso de nuestro
+                                        sitio web o la compra de nuestros
+                                        productos.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Modificaciones y
+                                    Actualizaciones</strong>
+                                <ol>
+                                    <li><strong>Modificación de
+                                            Términos:</strong> Nos reservamos el
+                                        derecho de modificar o actualizar estos
+                                        términos y condiciones en cualquier
+                                        momento sin previo aviso. Te
+                                        recomendamos revisar periódicamente esta
+                                        sección para estar al tanto de cualquier
+                                        cambio.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Ley Aplicable y Jurisdicción</strong>
+                                <ol>
+                                    <li><strong>Ley Aplicable:</strong> Estos
+                                        términos y condiciones se regirán e
+                                        interpretarán de acuerdo con las leyes
+                                        vigentes del país donde se encuentre
+                                        registrada D'Italia.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Contacto</strong>
+                                <ol>
+                                    <li><strong>Atención al Cliente:</strong>
+                                        Para cualquier consulta, comentario o
+                                        reclamo relacionado con nuestros
+                                        términos y condiciones, por favor
+                                        contáctanos a través de nuestros canales
+                                        de atención al cliente disponibles en
+                                        nuestro sitio web.</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="modal-footer" style="justify-content: center;">
+                        <button type="button"
+                            class="btn btn-secondary text-center"
+                            data-ripple-init
+                            data-dismiss="modal">Acepto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <mi-footer id="footer"></mi-footer>
+
+        <!-- Scripts cdn -->
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+        <!-- Scripts locales -->
+        <script src="recursos/js/bootstrap.bundle.min.js"></script>
+        <script src="recursos/js/scripts.js"></script>
+        <script src="recursos/js/carrusel.js"></script>
+        <script src="recursos/js/galeria.js"></script>
+    </body>
+</html>

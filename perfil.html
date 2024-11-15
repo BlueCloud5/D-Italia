@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Blue Cloud">
+    <meta name="description"
+      content="Sitio Web de comercio electronico acerca de una tienda de vestidos para XV años" />
+    <meta name="keywords" content="Vestidos, XV Años, Bodas" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:," />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Iconos -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+      rel='stylesheet'>
+
+    <!-- Estilos locales -->
+    <link href="recursos/css/bootstrap.min.css"
+      rel="stylesheet">
+    <link href="recursos/css/estilos.css" rel="stylesheet">
+    <link href="recursos/css/cabecera.css" rel="stylesheet">
+    <link href="recursos/css/iniciarSesion.css"
+      rel="stylesheet">
+    <link href="recursos/css/pie.css" rel="stylesheet">
+
+    <title>Perfil</title>
+
+    <script type="module" src="lib/js/consumeJson.js"></script>
+    <script type="module" src="lib/js/muestraError.js"></script>
+    <script type="module" src="./js/protege.js"></script>
+    <script type="module" src="./js/custom/mi-nav.js"></script>
+    <script type="module" src="./js/custom/mi-breadcrumb.js"></script>
+
+  </head>
+
+  <body onload="protege('srv/sesion-actual.php')
+    .then(sesion => {
+      nav.sesion = sesion
+      const cue = sesion.cue
+      if (cue === '') {
+        login.hidden = false
+        outputCue.value = 'No ha iniciado sesión.'
+        outputRoles.value = ''
+      } else {
+        logout.hidden = false
+        outputCue.value = cue
+        const rolIds = sesion.rolIds
+        outputRoles.value = rolIds.size === 0
+        ? 'Sin roles'
+        : Array.from(rolIds).join(', ')
+      }
+    })
+    .catch(muestraError)
+  ">
+
+    <mi-nav id="nav"></mi-nav>
+
+    <mi-breadcrumb id="breadcrumb"></mi-breadcrumb>
+
+    <p class="fs-1 fw-bold" style="text-align: center;">
+      <output id="outputCue">
+        <progress max="100">Cargando&hellip;</progress>
+      </output>
+    </p>
+
+    <p class="fs-1 fw-bold" style="text-align: center;">
+      <output id="outputRoles">
+        <progress max="100">Cargando&hellip;</progress>
+      </output>
+    </p>
+
+    <p class="fs-1 fw-bold" style="text-align: center;">
+
+      <a id="login" hidden href="iniciarSesion.html">Iniciar sesión</a>
+
+      <button type="button" id="logout" hidden
+        onclick="consumeJson('srv/logout.php')
+        .then(json => location.href = 'iniciarSesion.html')
+        .catch(muestraError)
+      ">
+        Terminar sesión
+      </button>
+
+    </p>
+
+    <!-- Scripts locales -->
+    <script src="recursos/js/bootstrap.bundle.min.js"></script>
+    <script src="recursos/js/scripts.js"></script>
+    <script src="recursos/js/carrusel.js"></script>
+    <script src="recursos/js/galeria.js"></script>
+  </body>
+
+</html>

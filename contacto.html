@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Blue Cloud">
+        <meta name="description"
+            content="Sitio Web de comercio electronico acerca de una tienda de vestidos para XV años" />
+        <meta name="keywords" content="Vestidos, XV Años, Bodas" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="data:," />
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css"
+            href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+        <!-- Iconos -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+            rel='stylesheet'>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet">
+
+        <!-- Estilos locales -->
+        <link href="recursos/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link href="recursos/css/estilos.css" rel="stylesheet">
+        <link href="recursos/css/cabecera.css" rel="stylesheet">
+        <!-- <link href="recursos/css/inicio.css" rel="stylesheet">
+        <link href="recursos/css/catalogo.css" rel="stylesheet"> -->
+        <link href="recursos/css/iniciarSesion.css"
+            rel="stylesheet">
+        <link href="recursos/css/panelControl.css"
+            rel="stylesheet">
+        <link href="recursos/css/pie.css" rel="stylesheet">
+
+        <title>D'Italia</title>
+
+        <script type="module" src="lib/js/submitForm.js"></script>
+        <script type="module" src="lib/js/muestraError.js"></script>
+        <script type="module" src="./js/protege.js"></script>
+        <script type="module" src="./js/custom/mi-nav.js"></script>
+        <script type="module" src="./js/custom/mi-banner.js"></script>
+        <script type="module" src="./js/custom/mi-breadcrumb.js"></script>
+        <script type="module" src="./js/custom/mi-footer.js"></script>
+    </head>
+    <body onload="protege('srv/sesion-actual.php')
+    .then(sesion => {
+        nav.sesion = sesion
+        footer.sesion = sesion
+    })
+    .catch(muestraError)">
+
+        <mi-nav id="nav"></mi-nav>
+
+        <mi-banner id="banner"></mi-banner>
+
+        <mi-breadcrumb id="breadcrumb"></mi-breadcrumb>
+
+        <!-- Inicio Formulario Contacto -->
+        <div class="untree_co-section">
+            <div class="container">
+                <div class="block">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 col-lg-8 pb-4">
+                            <div class="row mb-5">
+                                <div class="col-lg-4">
+                                    <div
+                                        class="service no-shadow align-items-center link horizontal d-flex active"
+                                        data-aos="fade-left" data-aos-delay="0">
+                                        <div class="service-icon mb-4"
+                                            style="background-color: #E6C3AA;"
+                                            data-bs-toggle="tooltip"
+                                            title="Ubicación">
+                                            <i class='bx bxs-map iconos'></i>
+                                        </div>
+                                        <div class="service-contents">
+                                            <p>Plaza Comonfort No.7A, Colonia
+                                                Centro C.P. 06010 CDMX</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div
+                                        class="service no-shadow align-items-center link horizontal d-flex active"
+                                        data-aos="fade-left" data-aos-delay="0">
+                                        <div class="service-icon mb-4"
+                                            style="background-color: #E6C3AA;"
+                                            data-bs-toggle="tooltip"
+                                            title="Correo electrónico">
+                                            <i
+                                                class='bx bxs-envelope iconos'></i>
+                                        </div>
+                                        <div class="service-contents">
+                                            <p>ditalia@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div
+                                        class="service no-shadow align-items-center link horizontal d-flex active"
+                                        data-aos="fade-left" data-aos-delay="0">
+                                        <div class="service-icon mb-4"
+                                            style="background-color: #E6C3AA;"
+                                            data-bs-toggle="tooltip"
+                                            title="Número de contacto">
+                                            <i class='bx bxs-phone iconos'></i>
+                                        </div>
+                                        <div class="service-contents">
+                                            <p>+52 55 9133 8243</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.3260861831504!2d-99.13768192596763!3d19.44150278183981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f92e30019807%3A0x9c11601e8bc192ee!2sIgnacio%20Comonfort%207%2C%20Centro%20Hist%C3%B3rico%20de%20la%20Cdad.%20de%20M%C3%A9xico%2C%20Centro%2C%20Cuauht%C3%A9moc%2C%2006010%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1719085320988!5m2!1ses-419!2smx"
+                                    width="600" height="450" style="border:0;"
+                                    allowfullscreen loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                            </div>
+
+                            <form method="POST">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="text-black">Nombre(s)
+                                                <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text"
+                                                class="form-control" id="nombre"
+                                                name="nombre" required
+                                                autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label
+                                                class="text-black">Apellido(s)</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="apellidos" name="apellidos">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="text-black">Correo
+                                                electrónico <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="email"
+                                                class="form-control" id="correo"
+                                                name="correo" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="text-black">Número
+                                                télefonico</label>
+                                            <input type="text"
+                                                class="form-control"
+                                                id="telefono" name="telefono">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-5">
+                                    <label class="text-black">Mensaje <span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="mensaje"
+                                        name="mensaje" cols="30" rows="5"
+                                        placeholder="Escribe el asunto, queja, sugerencia, comentario aquí..."
+                                        required></textarea>
+                                </div>
+
+                                <div class="d-grid gap-2 col-6 mx-auto">
+                                    <button type="submit"
+                                        class="btn btn-primary">Enviar
+                                        mensaje</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Formulario Contacto -->
+
+        <mi-footer id="footer"></mi-footer>
+
+        <!-- Scripts cdn -->
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+        <!-- Scripts locales -->
+        <script src="../recursos/js/bootstrap.bundle.min.js"></script>
+        <script src="../recursos/js/scripts.js"></script>
+    </body>
+</html>
