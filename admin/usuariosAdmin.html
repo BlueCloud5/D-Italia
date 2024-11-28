@@ -9,7 +9,7 @@
         <meta name="keywords" content="Vestidos, XV Años, Bodas" />
 
         <!-- Favicon -->
-        <link rel="icon" href="data:," />
+        <link rel="icon" href="/recursos/favicon.png" />
 
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -44,10 +44,8 @@
                 nav.sesion = sesion
                 main.hidden = false
             }),
-            protege('../srv/sesion-actual.php').then(sesion => nav.sesion = sesion, respuesta => muestraObjeto(document, respuesta.body)),
             consumeJson('../srv/usuarios.php').then(respuesta => muestraObjeto(document, respuesta.body))
-        ])
-        .catch(muestraError)
+        ]).catch(muestraError)
     ">
 
         <mi-nav id="nav"></mi-nav>
@@ -55,7 +53,7 @@
         <mi-breadcrumb id="breadcrumb"></mi-breadcrumb>
 
         <main id="main" hidden>
-            <div class="container dashboard-container mt-5">
+            <div class="container dashboard-container my-5">
                 <h1 class="text-center">Tabla de Usuarios</h1>
                 <div class="card">
                     <div class="card-header">
@@ -76,13 +74,17 @@
                                 <thead>
                                     <tr>
                                         <th style="width:10px">#</th>
-                                        <th>Cue</th>
-                                        <th>Roles</th>
+                                        <th>Nombre(s)</th>
+                                        <th>Correo electrónico</th>
+                                        <th>Rol(es)</th>
+                                        <th>Foto</th>
+                                        <th>Fecha Creación</th>
+                                        <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody class="align-middle" id="lista">
-                                    <td colspan="5"><progress
+                                    <td colspan="8"><progress
                                             max="100">Cargando&hellip;</progress></td>
                                 </tbody>
                             </table>

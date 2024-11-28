@@ -1,0 +1,7 @@
+<?php
+
+const SERVICIO = "SERVICIO";
+const SER_ID = "SER_ID";
+const SER_NOMBRE = "SER_NOMBRE";
+const SER_DESCRIPCION = "SER_DESCRIPCION";
+const SER_ESTADO = "SER_ESTADO";

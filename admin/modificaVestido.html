@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Blue Cloud">
+    <meta name="description"
+      content="Sitio Web de comercio electronico acerca de una tienda de vestidos para XV años" />
+    <meta name="keywords" content="Vestidos, XV Años, Bodas" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/recursos/favicon.png" />
+
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet" />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css"
+      rel="stylesheet" />
+
+    <title>D'Italia</title>
+
+    <script type="module" src="../lib/js/consumeJson.js"></script>
+    <script type="module" src="../lib/js/submitForm.js"></script>
+    <script type="module" src="../lib/js/muestraError.js"></script>
+    <script type="module" src="../lib/js/muestraObjeto.js"></script>
+    <script type="module" src="../lib/js/muestraImagenSeleccionada.js"></script>
+    <script type="module" src="../js/ROL_ID_ADMINISTRADOR.js"></script>
+    <script type="module" src="../js/protege.js"></script>
+
+    <script>
+      // Obtiene los parámetros de la página.
+      const params = new URL(location.href).searchParams
+    </script>
+
+  </head>
+
+  <body class="bg-light" onload="
+    Promise.all([
+      protege('../srv/sesion-actual.php', [ROL_ID_ADMINISTRADOR], '../index.html')
+        .then(sesion => {
+          main.hidden = false;
+        }),
+      consumeJson('../srv/roles.php').then(respuesta => muestraObjeto(document, respuesta.body))
+    ])
+    .catch(muestraError);
+
+    if (params.size > 0) {
+      Promise.all([
+        consumeJson('../srv/categoria-options.php'),
+        consumeJson('../srv/color-options.php'),
+        consumeJson('../srv/talla-options.php'),
+        consumeJson('../srv/vestido.php?' + params)
+      ])
+      .then(([categorias, colores, tallas, modelo]) => {
+        muestraObjeto(document, categorias.body);
+        muestraObjeto(document, colores.body);
+        muestraObjeto(document, tallas.body);
+        muestraObjeto(document, modelo.body);
+      })
+      .catch(muestraError);
+    }
+  ">
+
+    <main id="main" hidden>
+      <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-center mt-4">
+          <div class="card text-bg-white mb-3" style="max-width: 30rem;">
+            <div class="card-header text-white text-center fs-2 fw-bold"
+              style="background-color: #E6C3AA;">
+              Modificar Vestido
+            </div>
+            <div class="card-body">
+              <form id="forma"
+                onsubmit="submitForm('../srv/vestido-modifica.php', event).then(respuesta => location.href = '../admin/vestidosAdmin.html').catch(muestraError)">
+
+                <input name="id" type="hidden">
+
+                <div class="form-outline mb-5" data-mdb-input-init>
+                  <input class="form-control active" name="modelo" autofocus />
+                  <label class="form-label">Modelo</label>
+                  <div class="form-helper text-danger"> * Obligatorio </div>
+                </div>
+
+                <div class="form-group mb-4">
+                  <label class="fw-bold" for="categoria">
+                    Categoría:</label> <select class="form-control"
+                    name="catId">
+                    <option value>Cargando&hellip;</option>
+                  </select>
+                  <div class="form-helper text-danger"
+                    style="font-size: 0.9rem;"> * Obligatorio </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group mb-4">
+                      <label class="fw-bold" for="talla">
+                        Talla:</label> <select class="form-control"
+                        name="tallId">
+                        <option value>Cargando&hellip;</option>
+                      </select>
+                      <div class="form-helper text-danger"
+                        style="font-size: 0.9rem;"> * Obligatorio </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group mb-4">
+                      <label class="fw-bold" for="color">
+                        Color:</label> <select class="form-control"
+                        name="colId">
+                        <option value>Cargando&hellip;</option>
+                      </select>
+                      <div class="form-helper text-danger"
+                        style="font-size: 0.9rem;"> * Obligatorio </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-outline mb-5" data-mdb-input-init>
+                  <textarea class="form-control active" name="descripcion"
+                    rows="10"></textarea>
+                  <label class="form-label">Descripción</label>
+                  <div class="form-helper text-danger"> * Obligatorio </div>
+                </div>
+
+                <div class="form-outline mb-5" data-mdb-input-init>
+                  <input type="number" class="form-control active" name="precio"
+                    min="500.00" step="0.01" />
+                  <label class="form-label">Precio</label>
+                  <div class="form-helper text-danger"> * Obligatorio </div>
+                </div>
+
+                <label class="fw-bold">Estado:</label>
+                <div
+                  class="btn-group d-flex align-items-center justify-content-center">
+                  <input type="radio" class="btn-check" name="estado"
+                    id="option1" value="Disponible" />
+                  <label class="btn btn-success fw-bold"
+                    for="option1">Disponible</label>
+
+                  <input type="radio" class="btn-check" name="estado"
+                    id="option2" value="No disponible" />
+                  <label class="btn btn-danger fw-bold"
+                    for="option2">No disponible</label>
+                </div>
+                <label class="text-danger mb-4" style="font-size: .89rem;"> *
+                  Obligatorio </label>
+
+                <input name="fechaDeCreacion" type="hidden">
+
+                <div class="form-group">
+                  <label class="fw-bold">Imagen:</label> <input
+                    class="form-control bg-light" name="imagen" type="file"
+                    accept="image/*" data-img="preview"
+                    oninput="muestraImagenSeleccionada(document, this).catch(muestraError)">
+                </div>
+                <label class="text-danger mb-4" style="font-size: .89rem;"> *
+                  Obligatorio </label>
+
+                <div class="text-center">
+                  <img class="img-thumbnail mb-4" id="preview" hidden
+                    alt="Imagen del vestido" width="200px">
+                </div>
+
+                <div class="row">
+
+                  <div class="col">
+                    <a href="../admin/vestidosAdmin.html" type="button"
+                      class="btn btn-warning btn-floating">
+                      <i class="fas fa-left-long fa-lg"></i>
+                    </a>
+                  </div>
+
+                  <div class="col text-end">
+                    <button class="btn bg-success text-white fw-bold"
+                      type="submit">Guardar</button>
+                  </div>
+
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- MDB -->
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"></script>
+  </body>
+
+</html>

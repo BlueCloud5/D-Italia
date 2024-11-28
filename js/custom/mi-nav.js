@@ -44,7 +44,7 @@ export class MiNav extends HTMLElement {
     if (rolIds.has(ROL_ID_CLIENTE)) {
       innerHTML += /* html */ `<li><a class="nav-link" href="../cliente/citas.html">Agenda tu cita</a></li>`;
     }
-    if (!rolIds.has(ROL_ID_ADMINISTRADOR)) {
+    if (rolIds.has(ROL_ID_CLIENTE) || !rolIds.has(ROL_ID_ADMINISTRADOR)) {
       innerHTML += /* html */ `<li><a class="nav-link" href="../nosotros.html">Nosotros</a></li>`;
       innerHTML += /* html */ `<li><a class="nav-link" href="../contacto.html">Contacto</a></li>`;
     }
@@ -84,9 +84,14 @@ export class MiNav extends HTMLElement {
       </a>
       <ul class="dropdown-menu" aria-labelledby="adminDropdown">
           <li><a class="dropdown-item" href="../admin/panelControl.html">Panel de Control</a></li>
+          <li><a class="dropdown-item" href="../admin/accesoriosAdmin.html">Accesorios</a></li>
           <li><a class="dropdown-item" href="../admin/categoriasAdmin.html">Categorías</a></li>
           <li><a class="dropdown-item" href="../admin/coloresAdmin.html">Colores</a></li>
+          <li><a class="dropdown-item" href="../admin/contactosAdmin.html">Mensajes de contacto</a></li>
+          <li><a class="dropdown-item" href="../admin/serviciosAdmin.html">Servicios</a></li>
+          <li><a class="dropdown-item" href="../admin/tallasAdmin.html">Tallas</a></li>
           <li><a class="dropdown-item" href="../admin/usuariosAdmin.html">Usuarios</a></li>
+          <li><a class="dropdown-item" href="../admin/vestidosAdmin.html">Vestidos</a></li>
       </ul>
   </li>`
       : "";
@@ -119,8 +124,8 @@ export class MiNav extends HTMLElement {
    */
   hipervinculosCliente(rolIds) {
     return rolIds.has(ROL_ID_CLIENTE)
-      // ? /* html */ `<li><a class="nav-link" href="carrito.html"><i class="bx bx-cart bx-md"></i></a></li>`
-      ? ""
+      ? // ? /* html */ `<li><a class="nav-link" href="carrito.html"><i class="bx bx-cart bx-md"></i></a></li>`
+        ""
       : "";
   }
 }

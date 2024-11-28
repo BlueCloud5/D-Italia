@@ -9,7 +9,7 @@ function validaHexadecimal(false|string $hexa)
     if ($hexa === false)
         throw new ProblemDetails(
             status: BAD_REQUEST,
-            title: "Falta el hexa.",
+            title: "Falta el hexadecimal.",
             type: "/error/faltahexadecimal.html",
             detail: "La solicitud no tiene el valor de hexadecimal."
         );

@@ -61,7 +61,7 @@ export class MiBreadcrumb extends HTMLElement {
       registro: "Registrarse",
       panelControl: "Panel de Control",
       perfil: "Perfil",
-      accesoresAdmin: "Tabla de Accesorios",
+      accesoriosAdmin: "Tabla de Accesorios",
       categoriasAdmin: "Tabla de Categorías",
       citasAdmin: "Tabla de Citas",
       coloresAdmin: "Tabla de Colores",

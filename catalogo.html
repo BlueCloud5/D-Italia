@@ -9,13 +9,10 @@
         <meta name="keywords" content="Vestidos, XV Años, Bodas" />
 
         <!-- Favicon -->
-        <link rel="icon" href="data:," />
+        <link rel="icon" href="/recursos/favicon.png" />
 
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- DataTables CSS -->
-        <link rel="stylesheet" type="text/css"
-            href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
         <!-- Iconos -->
         <link
@@ -32,10 +29,12 @@
             rel="stylesheet">
         <link href="../recursos/css/estilos.css" rel="stylesheet">
         <link href="../recursos/css/cabecera.css" rel="stylesheet">
+        <link href="../recursos/css/catalogo.css" rel="stylesheet">
         <link href="../recursos/css/pie.css" rel="stylesheet">
 
         <title>D'Italia</title>
 
+        <script type="module" src="../lib/js/muestraObjeto.js"></script>
         <script type="module" src="../lib/js/muestraError.js"></script>
         <script type="module" src="../js/protege.js"></script>
         <script type="module" src="../js/custom/mi-nav.js"></script>
@@ -43,18 +42,234 @@
         <script type="module" src="../js/custom/mi-breadcrumb.js"></script>
         <script type="module" src="../js/custom/mi-footer.js"></script>
     </head>
-    <body onload="protege('../srv/sesion-actual.php')
-    .then(sesion => {
-        nav.sesion = sesion
-        footer.sesion = sesion
-    })
-    .catch(muestraError)">
+    <body onload="
+        Promise.all([
+            consumeJson('../srv/vestido-cards.php')
+            .then(options => muestraObjeto(document, options.body)),
+            consumeJson('../srv/accesorio-cards.php')
+            .then(options => muestraObjeto(document, options.body)),
+            consumeJson('../srv/categoria-options.php')
+            .then(options => muestraObjeto(document, options.body)),
+            consumeJson('../srv/color-palete.php')
+            .then(options => muestraObjeto(document, options.body)),
+            consumeJson('../srv/talla-palete.php')
+            .then(options => muestraObjeto(document, options.body)),
+            protege('../srv/sesion-actual.php')
+            .then(sesion => {
+                nav.sesion = sesion
+                footer.sesion = sesion
+            })
+        ]).catch(muestraError)
+        .then(() => {
+            bindProductItemClick()
+        })
+    ">
 
         <mi-nav id="nav"></mi-nav>
 
         <mi-banner id="banner"></mi-banner>
 
         <mi-breadcrumb id="breadcrumb"></mi-breadcrumb>
+
+        <div class="untree_co-section product-section before-footer-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <ul class="nav nav-pills justify-content-center">
+                            <li class="nav-item">
+                                <button class="nav-link active"
+                                    id="pills-vestidos-tab"
+                                    data-bs-toggle="pill"
+                                    data-bs-target="#pills-vestidos"
+                                    type="button" role="tab"
+                                    aria-controls="pills-vestidos"
+                                    aria-selected="true">Vestidos</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link"
+                                    id="pills-accesorios-tab"
+                                    data-bs-toggle="pill"
+                                    data-bs-target="#pills-accesorios"
+                                    type="button" role="tab"
+                                    aria-controls="pills-accesorios"
+                                    aria-selected="false">Accesorios</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active"
+                            id="pills-vestidos" role="tabpanel"
+                            aria-labelledby="pills-vestidos-tab">
+                            <div class="row">
+                                <!-- Start Filter Column -->
+                                <div
+                                    class="col-12 col-md-4 col-lg-3 mb-4 order-1 order-md-1">
+                                    <form id="formFiltrosVes" method="POST">
+                                        <div class="filter-section">
+                                            <h5
+                                                class="filter-title fw-bold">Buscar
+                                                por modelo</h5>
+                                            <input type="text"
+                                                class="form-control mb-3"
+                                                id="modelo" name="modelo"
+                                                placeholder="Buscar por modelo...">
+
+                                            <hr class="my-4">
+                                            <h5
+                                                class="filter-title fw-bold">Filtrar
+                                                por rango de precios</h5>
+                                            <div class="price-slider">
+                                                <input type="range"
+                                                    id="precioVestidos"
+                                                    name="precio" min="7000"
+                                                    max="12000" step="100"
+                                                    value="7000">
+                                            </div>
+                                            <p class="text-danger fw-bold">Rango
+                                                de precios: <span
+                                                    id="priceMinDisplayVestidos">$7,000</span>
+                                                - <span
+                                                    id="priceMaxDisplayVestidos">12,000</span></p>
+
+                                            <hr class="my-4">
+                                            <h5
+                                                class="filter-title fw-bold">Filtrar
+                                                por categoría</h5>
+                                            <select class="form-control mb-2"
+                                                name="catId">
+                                                <option
+                                                    value>Cargando&hellip;</option>
+                                            </select>
+
+                                            <hr class="my-4">
+                                            <h5
+                                                class="filter-title fw-bold">Filtrar
+                                                por tallas</h5>
+                                            <div
+                                                id="tallaContainer">Cargando&hellip;</div>
+
+                                            <hr class="my-4">
+                                            <h5
+                                                class="filter-title fw-bold">Filtrar
+                                                por colores</h5>
+                                            <div
+                                                id="colorContainerVestidos">Cargando&hellip;</div>
+
+                                            <hr class="mt-2 mb-4">
+                                            <div class="d-grid gap-2">
+                                                <button type="submit"
+                                                    class="btn text-white"
+                                                    style="background-color: #E6C3AA;">Aplicar
+                                                    Filtros</button>
+                                                <button type="button"
+                                                    id="resetButtonVes"
+                                                    class="btn text-white"
+                                                    style="background-color: #E6C3AA;">Limpiar
+                                                    Filtros</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- End Filter Column -->
+
+                                <!-- Start Product Columns -->
+                                <div
+                                    class="col-12 col-md-8 col-lg-9 order-2 order-md-2">
+                                    <h1 class="text-center py-3 mb-5"
+                                        style="background-color: #ebebebdc;">VESTIDOS</h1>
+                                    <div class="row"
+                                        id="tarjetasVes">Cargando&hellip;</div>
+                                    <div class="col-12"
+                                        id="paginacionVestidos"></div>
+                                </div>
+                                <!-- End Product Columns -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pills-accesorios"
+                            role="tabpanel"
+                            aria-labelledby="pills-accesorios-tab">
+                            <div class="row">
+                                <!-- Start Filter Column -->
+                                <div
+                                    class="col-12 col-md-4 col-lg-3 mb-4 order-1 order-md-1">
+                                    <form id="formFiltrosAcc" method="POST">
+                                        <div class="filter-section">
+                                            <h5
+                                                class="filter-title fw-bold">Buscar
+                                                por modelo</h5>
+                                            <input type="text"
+                                                class="form-control mb-3"
+                                                id="modeloA" name="modelo"
+                                                placeholder="Buscar por modelo...">
+
+                                            <hr class="my-4">
+                                            <h5
+                                                class="filter-title fw-bold">Filtrar
+                                                por rango de precios</h5>
+                                            <div class="price-slider">
+                                                <input type="range"
+                                                    id="precioAccesorios"
+                                                    name="precio" min="500"
+                                                    max="1500" step="50"
+                                                    value="500">
+                                            </div>
+                                            <p class="text-danger fw-bold">Rango
+                                                de precios: <span
+                                                    id="priceMinDisplayAccesorios">$500</span>
+                                                - <span
+                                                    id="priceMaxDisplayAccesorios">1,500</span></p>
+
+                                            <hr class="my-4">
+                                            <h5
+                                                class="filter-title fw-bold">Filtrar
+                                                por categoría</h5>
+                                            <select class="form-control mb-2"
+                                                name="catId">
+                                                <option
+                                                    value>Cargando&hellip;</option>
+                                            </select>
+
+                                            <hr class="my-4">
+                                            <h5
+                                                class="filter-title fw-bold">Filtrar
+                                                por colores</h5>
+                                            <div
+                                                id="colorContainerAccesorios">Cargando&hellip;</div>
+
+                                            <hr class="mt-2 mb-4">
+                                            <div class="d-grid gap-2">
+                                                <button type="submit"
+                                                    class="btn text-white"
+                                                    style="background-color: #E6C3AA;">Aplicar
+                                                    Filtros</button>
+                                                <button type="button"
+                                                    id="resetButtonAcc"
+                                                    class="btn text-white"
+                                                    style="background-color: #E6C3AA;">Limpiar
+                                                    Filtros</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- End Filter Column -->
+
+                                <!-- Start Product Columns -->
+                                <div
+                                    class="col-12 col-md-8 col-lg-9 order-2 order-md-2">
+                                    <h1 class="text-center py-3 mb-5"
+                                        style="background-color: #ebebebdc;">ACCESORIOS</h1>
+                                    <div class="row" id="tarjetasAcc"></div>
+                                    <div class="col-12"
+                                        id="paginacionAccesorios"></div>
+                                </div>
+                                <!-- End Product Columns -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <mi-footer id="footer"></mi-footer>
 
@@ -72,4 +287,110 @@
         <!-- Scripts locales -->
         <script src="../recursos/js/bootstrap.bundle.min.js"></script>
     </body>
+
+    <script>
+        function bindProductItemClick() {
+            const productos = document.querySelectorAll(".product-item");
+            console.log(productos)
+    
+            productos.forEach((producto) => {
+                producto.addEventListener("click", function() {
+    
+                    const imagenSrc = this.querySelector("img").src;
+                    const idProducto = this.querySelector(".product-id").textContent;
+                    const titulo = this.querySelector(".product-title").textContent;
+                    const categoria = this.querySelector(".product-cate").textContent;
+                    const descripcion = this.querySelector(".product-desc").textContent;
+                    const precio = this.querySelector(".product-price").textContent;
+        
+                    const overlay = document.createElement("div");
+    
+                    const tallasHTML = `
+                        <p>Tallas disponibles:
+                            <select class="form-select" name="tallId">
+                                <option value>Cargando&hellip;</option>
+                            </select>
+                        </p>
+                    `;
+
+                    const coloresHTML = `
+                        <p>Colores disponibles:
+                            <select class="form-select mb-2" name="colId">
+                                <option value>Cargando&hellip;</option>
+                            </select>
+                        </p>
+                    `;
+    
+                    overlay.innerHTML = `
+                        <div class="overlay">
+                            <div class="popup">
+                                <div class="close-x fs-1 fw-bold text-white">&#10005;</div>
+                                <div class="popup-content py-5">
+                                    <div class="popup-image">
+                                        <img src="${imagenSrc}" alt="${titulo}">
+                                    </div>
+                                    <div class="popup-details">
+                                        <div class="alert alert-primary" role="alert">
+                                            <i class="fas fa-info-circle fa-lg me-1"></i>¿Te interesa este producto? por favor <a class="text-black fw-bold" href="index.php?pagina=iniciarSesion" style="text-decoration: none;">Inicia sesión</a> para adquirirlo.
+                                        </div>
+                                        <p class="fs-3 fw-bold">${titulo}</p>
+                                        <p style="font-size: 15px">${categoria} | ${descripcion}</p>
+                                        <p class="fs-5 fw-bold text-white">${precio}</p>
+                                        <form onsubmit="submitForm('../srv/det-venta-agrega.php', event)
+                                            .then(modelo => location.href = 'index.html')
+                                            .catch(muestraError)">
+                                            <input type="hidden" class="form-control" id="producto" name="producto" value="${idProducto}">
+                                            
+                                            ${tallasHTML}
+                                            ${coloresHTML}
+                                            
+                                            <button type="submit" class="btnCatalogo" hidden>Agregar al carrito</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+    
+                    document.body.appendChild(overlay);
+                    
+                    const tallaSelects = document.getElementsByName("tallId");
+
+                    if (tallaSelects.length > 0) {
+                        const tallaSelect = tallaSelects[0];
+
+                        fetch("../srv/talla-options.php")
+                            .then((response) => response.json())
+                            .then((data) => {
+                                tallaSelect.innerHTML = data.tallId.innerHTML;
+                            })
+                            .catch((error) => console.error("Error al recuperar colores:", error));
+                    } else {
+                        console.error("Elemento con name='talla' no encontrado.");
+                    }
+
+                    const colIdSelects = document.getElementsByName("colId");
+
+                    if (colIdSelects.length > 0) {
+                        const colIdSelect = colIdSelects[0];
+
+                        fetch("../srv/color-options.php")
+                            .then((response) => response.json())
+                            .then((data) => {
+                                colIdSelect.innerHTML = data.colId.innerHTML;
+                            })
+                            .catch((error) => console.error("Error al recuperar colores:", error));
+                    } else {
+                        console.error("Elemento con name='colId' no encontrado.");
+                    }
+    
+                    overlay.addEventListener("click", function(e) {
+                        if (e.target.classList.contains("close-x") || e.target.classList.contains("overlay")) {
+                            overlay.remove();
+                        }
+                    });
+                });
+            });
+        }
+    </script>
 </html>

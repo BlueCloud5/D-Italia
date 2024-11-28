@@ -1,14 +1,3 @@
-$(document).ready(function () {
-  // Verificar si el modal ya ha sido mostrado
-  if (!localStorage.getItem("modalShown")) {
-    // Mostrar el modal
-    $("#modalTerminosCondiciones").modal("show");
-
-    // Marcar que el modal ha sido mostrado
-    localStorage.setItem("modalShown", "true");
-  }
-});
-
 (function ($) {
   "use strict";
   $(window).scroll(function () {

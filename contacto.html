@@ -9,13 +9,10 @@
         <meta name="keywords" content="Vestidos, XV Años, Bodas" />
 
         <!-- Favicon -->
-        <link rel="icon" href="data:," />
+        <link rel="icon" href="/recursos/favicon.png" />
 
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- DataTables CSS -->
-        <link rel="stylesheet" type="text/css"
-            href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
         <!-- Iconos -->
         <link
@@ -23,39 +20,31 @@
             rel="stylesheet">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
             rel='stylesheet'>
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-            rel="stylesheet">
 
         <!-- Estilos locales -->
         <link href="recursos/css/bootstrap.min.css"
             rel="stylesheet">
         <link href="recursos/css/estilos.css" rel="stylesheet">
         <link href="recursos/css/cabecera.css" rel="stylesheet">
-        <!-- <link href="recursos/css/inicio.css" rel="stylesheet">
-        <link href="recursos/css/catalogo.css" rel="stylesheet"> -->
-        <link href="recursos/css/iniciarSesion.css"
-            rel="stylesheet">
-        <link href="recursos/css/panelControl.css"
-            rel="stylesheet">
         <link href="recursos/css/pie.css" rel="stylesheet">
 
         <title>D'Italia</title>
 
         <script type="module" src="lib/js/submitForm.js"></script>
         <script type="module" src="lib/js/muestraError.js"></script>
+        <script type="module" src="../js/ROL_ID_CLIENTE.js"></script>
         <script type="module" src="./js/protege.js"></script>
         <script type="module" src="./js/custom/mi-nav.js"></script>
         <script type="module" src="./js/custom/mi-banner.js"></script>
         <script type="module" src="./js/custom/mi-breadcrumb.js"></script>
         <script type="module" src="./js/custom/mi-footer.js"></script>
     </head>
-    <body onload="protege('srv/sesion-actual.php')
-    .then(sesion => {
-        nav.sesion = sesion
-        footer.sesion = sesion
-    })
-    .catch(muestraError)">
+    <body onload="protege('./srv/sesion-actual.php')
+            .then(sesion => {
+                nav.sesion = sesion
+                footer.sesion = sesion
+            })
+            .catch(muestraError)">
 
         <mi-nav id="nav"></mi-nav>
 
@@ -128,7 +117,8 @@
 
                             </div>
 
-                            <form method="POST">
+                            <form
+                                onsubmit="submitForm('../srv/contacto-agrega.php', event).then(modelo => location.href = '../contacto.html').catch(muestraError)">
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
@@ -144,7 +134,9 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label
-                                                class="text-black">Apellido(s)</label>
+                                                class="text-black">Apellido(s)
+                                                <span
+                                                    class="text-danger">*</span></label>
                                             <input type="text"
                                                 class="form-control"
                                                 id="apellidos" name="apellidos">
@@ -165,7 +157,8 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label class="text-black">Número
-                                                télefonico</label>
+                                                télefonico <span
+                                                    class="text-danger">*</span></label>
                                             <input type="text"
                                                 class="form-control"
                                                 id="telefono" name="telefono">

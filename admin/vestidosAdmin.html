@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Blue Cloud">
+        <meta name="description"
+            content="Sitio Web de comercio electronico acerca de una tienda de vestidos para XV años" />
+        <meta name="keywords" content="Vestidos, XV Años, Bodas" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="/recursos/favicon.png" />
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Iconos -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
+            rel='stylesheet'>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet">
+
+        <!-- Estilos locales -->
+        <link href="../recursos/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link href="../recursos/css/estilos.css" rel="stylesheet">
+        <link href="../recursos/css/cabecera.css" rel="stylesheet">
+        <link href="../recursos/css/catalogo.css" rel="stylesheet">
+
+        <title>D'Italia</title>
+
+        <script type="module" src="../lib/js/consumeJson.js"></script>
+        <script type="module" src="../lib/js/muestraObjeto.js"></script>
+        <script type="module" src="../lib/js/muestraError.js"></script>
+        <script type="module" src="../js/ROL_ID_ADMINISTRADOR.js"></script>
+        <script type="module" src="../js/protege.js"></script>
+        <script type="module" src="../js/custom/mi-nav.js"></script>
+        <script type="module" src="../js/custom/mi-breadcrumb.js"></script>
+    </head>
+    <body onload="
+        Promise.all([
+            protege('../srv/sesion-actual.php', [ROL_ID_ADMINISTRADOR], '../index.html')
+            .then(sesion => {
+                nav.sesion = sesion
+                main.hidden = false
+            }),
+            consumeJson('../srv/vestidos.php').then(respuesta => muestraObjeto(document, respuesta.body))
+        ]).catch(muestraError);
+    ">
+
+        <mi-nav id="nav"></mi-nav>
+
+        <mi-breadcrumb id="breadcrumb"></mi-breadcrumb>
+
+        <main id="main" hidden>
+            <div class="container dashboard-container my-5">
+                <h1 class="text-center">Tabla de Vestidos</h1>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col">
+                                <a
+                                    class="btn btn-info text-white"
+                                    href="../admin/agregaVestido.html">
+                                    <i class="fa fa-plus"></i> Nuevo Vestido
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table
+                                class="table table-striped mt-3 text-center">
+                                <thead>
+                                    <tr>
+                                        <th style="width:10px">#</th>
+                                        <th>Modelo</th>
+                                        <th>Precio</th>
+                                        <th>Categoría</th>
+                                        <th>Color</th>
+                                        <th>Talla</th>
+                                        <th>Descripción</th>
+                                        <th>Foto</th>
+                                        <th>Fecha Creación</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle" id="lista">
+                                    <td colspan="11"><progress
+                                            max="100">Cargando&hellip;</progress></td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            function confirmDelete(id) {
+                if (confirm('Confirma la eliminación')) {
+                    consumeJson('../srv/vestido-elimina.php?id=' + id)
+                    .then(() => location.reload())
+                    .catch(muestraError)
+                }
+            }
+        </script>
+
+        <!-- Scripts cdn -->
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+        <!-- Scripts locales -->
+        <script src="../recursos/js/bootstrap.bundle.min.js"></script>
+        <script src="../recursos/js/scripts.js"></script>
+    </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Blue Cloud">
+    <meta name="description"
+      content="Sitio Web de comercio electronico acerca de una tienda de vestidos para XV años" />
+    <meta name="keywords" content="Vestidos, XV Años, Bodas" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/recursos/favicon.png" />
+
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet" />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css"
+      rel="stylesheet" />
+
+    <title>D'Italia</title>
+
+    <script type="module" src="../lib/js/consumeJson.js"></script>
+    <script type="module" src="../lib/js/submitForm.js"></script>
+    <script type="module" src="../lib/js/muestraObjeto.js"></script>
+    <script type="module" src="../lib/js/muestraError.js"></script>
+    <script type="module" src="../js/ROL_ID_ADMINISTRADOR.js"></script>
+    <script type="module" src="../js/protege.js"></script>
+
+    <script>
+      // Obtiene los parámetros de la página.
+      const params = new URL(location.href).searchParams
+    </script>
+
+  </head>
+
+  <body class="bg-light" onload="
+    Promise.all([
+      protege('../srv/sesion-actual.php', [ROL_ID_ADMINISTRADOR], '../index.html')
+      .then(sesion => {
+        main.hidden = false
+      }),
+      consumeJson('../srv/roles.php').then(respuesta => muestraObjeto(document, respuesta.body))
+    ])
+    .catch(muestraError);
+    if (params.size > 0) {
+      consumeJson('../srv/contacto.php?' + params)
+      .then(respuesta => muestraObjeto(forma, respuesta.body))
+      .catch(muestraError)
+    }
+  ">
+
+    <main id="main" hidden>
+      <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-center mt-4">
+          <div class="card text-bg-white mb-3" style="max-width: 30rem;">
+            <div class="card-header text-white text-center fs-2 fw-bold"
+              style="background-color: #E6C3AA;">
+              Visualización de mensaje de contacto
+            </div>
+            <div class="card-body">
+              <form id="forma">
+
+                <input name="id" type="hidden">
+
+                <div class="form-outline mb-4" data-mdb-input-init>
+                  <input class="form-control" name="nombre"
+                    value="Cargando&hellip;" disabled />
+                  <label class="form-label">Nombre</label>
+                </div>
+
+                <div class="form-outline mb-4" data-mdb-input-init>
+                  <input class="form-control" name="apellidos"
+                    value="Cargando&hellip;" disabled />
+                  <label class="form-label">Apellidos</label>
+                </div>
+
+                <div class="form-outline mb-4" data-mdb-input-init>
+                  <input class="form-control" name="correo"
+                    value="Cargando&hellip;" disabled />
+                  <label class="form-label">Correo electrónico</label>
+                </div>
+
+                <div class="form-outline mb-4" data-mdb-input-init>
+                  <input class="form-control" name="telefono"
+                    value="Cargando&hellip;" disabled />
+                  <label class="form-label">Teléfono</label>
+                </div>
+
+                <div class="form-outline mb-4" data-mdb-input-init>
+                  <textarea class="form-control" name="mensaje"
+                    rows="10" disabled>Cargando&hellip;</textarea>
+                  <label class="form-label">Mensaje</label>
+                </div>
+
+                <div class="row">
+
+                  <div class="col-12">
+                    <a href="../admin/contactosAdmin.html" type="button"
+                      class="btn btn-warning btn-floating">
+                      <i class="fas fa-left-long fa-lg"></i>
+                    </a>
+                  </div>
+
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- MDB -->
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"></script>
+  </body>
+
+</html>

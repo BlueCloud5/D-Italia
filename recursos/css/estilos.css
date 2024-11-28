@@ -157,15 +157,15 @@ a.more {
   color: #ffeee2;
 }
 .btn.btn-secondary {
-  color: #e6c3aa;
-  background: #ffeee2;
+  color: #ffffff;
+  background: #e6c3aa;
   border-color: #ffeee2;
 }
 .btn.btn-secondary:hover {
   background: #e6c3aa;
   border-color: #ffeee2;
   border-width: 2px;
-  color: #ffeee2;
+  color: #000;
 }
 .btn.btn-white-outline {
   color: #ffeee2;
@@ -176,7 +176,7 @@ a.more {
 .btn.btn-white-outline:hover {
   border-color: #ffeee2;
   background: #ffeee2;
-  color: #e6c3aa;
+  color: #000;
 }
 
 .section-title {
@@ -850,7 +850,7 @@ textarea {
 }
 
 .custom-card {
-  width: 18rem;
+  width: 30rem;
   border: none;
   border-radius: 15px;
   background-color: #fff;
@@ -868,7 +868,7 @@ textarea {
 
 .custom-card .card-title {
   font-family: "Playfair Display", serif;
-  font-size: 1.5rem;
+  font-size: 1.9rem;
   color: #e6c3aa;
   margin-bottom: 15px;
   text-align: center;
@@ -876,7 +876,7 @@ textarea {
 
 .custom-card .card-text {
   font-family: "Roboto", sans-serif;
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #333;
   text-align: justify;
 }

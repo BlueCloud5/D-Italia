@@ -9,7 +9,7 @@
     <meta name="keywords" content="Vestidos, XV Años, Bodas" />
 
     <!-- Favicon -->
-    <link rel="icon" href="data:," />
+    <link rel="icon" href="/recursos/favicon.png" />
 
     <!-- Font Awesome -->
     <link
@@ -25,6 +25,7 @@
     <script type="module" src="../lib/js/consumeJson.js"></script>
     <script type="module" src="../lib/js/submitForm.js"></script>
     <script type="module" src="../lib/js/muestraObjeto.js"></script>
+    <script type="module" src="../lib/js/muestraImagenSeleccionada.js"></script>
     <script type="module" src="../lib/js/muestraError.js"></script>
     <script type="module" src="../js/ROL_ID_ADMINISTRADOR.js"></script>
     <script type="module" src="../js/protege.js"></script>
@@ -50,6 +51,15 @@
       .then(respuesta => muestraObjeto(forma, respuesta.body))
       .catch(muestraError)
     }
+    if (params.size > 0) {
+      consumeJson('../srv/rol-checkboxes.php')
+      .then(async checkBoxes => {
+      const modelo = await consumeJson('../srv/usuario.php?' + params)
+      await muestraObjeto(document, checkBoxes.body)
+      await muestraObjeto(document, modelo.body)
+      })
+      .catch(muestraError)
+    }
   ">
 
     <main id="main" hidden>
@@ -69,37 +79,67 @@
                 <div class="form-outline mb-5" data-mdb-input-init>
                   <input class="form-control" name="cue"
                     value="Cargando&hellip;" />
-                  <label class="form-label">Cue *</label>
+                  <label class="form-label">Nombre(s)</label>
                   <div class="form-helper text-danger"> * Obligatorio </div>
                 </div>
 
                 <div class="form-outline mb-5" data-mdb-input-init>
-                  <input class="form-control" name="match"
+                  <input class="form-control" name="correo"
                     value="Cargando&hellip;" />
-                  <label class="form-label">Match *</label>
+                  <label class="form-label">Correo electrónico</label>
                   <div class="form-helper text-danger"> * Obligatorio </div>
                 </div>
 
                 <fieldset class="border p-3 rounded">
                   <legend class="w-auto fw-bold">Roles</legend>
 
-                  <div class="form-check" id="roles[]"><progress
+                  <div class="form-check" id="roles"><progress
                       max="100">Cargando&hellip;</progress></div>
 
                 </fieldset>
                 <div class="form-helper text-danger mb-4"
                   style="font-size: 0.9rem;"> * Obligatorio </div>
 
+                <label class="fw-bold">Estado:</label>
+                <div
+                  class="btn-group d-flex align-items-center justify-content-center">
+                  <input type="radio" class="btn-check" name="estado"
+                    id="option1" value="Activado" />
+                  <label class="btn btn-success fw-bold"
+                    for="option1">Activado</label>
+
+                  <input type="radio" class="btn-check" name="estado"
+                    id="option2" value="Desactivado" />
+                  <label class="btn btn-danger fw-bold"
+                    for="option2">Desactivado</label>
+                </div>
+                <label class="text-danger mb-4" style="font-size: .89rem;"> *
+                  Obligatorio </label>
+
+                <input name="fechaDeCreacion" type="hidden">
+
+                <div class="form-group mb-4">
+                  <label class="fw-bold">Imagen:</label> <input
+                    class="form-control bg-light" name="imagen" type="file"
+                    accept="image/*" data-img="preview"
+                    oninput="muestraImagenSeleccionada(document, this).catch(muestraError)">
+                </div>
+
+                <div class="text-center">
+                  <img class="img-thumbnail mb-4" id="preview" hidden
+                    alt="Imagen del accesorio" width="200px">
+                </div>
+
                 <div class="row">
 
-                  <div class="col-7">
+                  <div class="col">
                     <a href="../admin/usuariosAdmin.html" type="button"
                       class="btn btn-warning btn-floating">
                       <i class="fas fa-left-long fa-lg"></i>
                     </a>
                   </div>
 
-                  <div class="col-5">
+                  <div class="col text-end">
                     <button class="btn bg-success text-white fw-bold"
                       type="submit">Guardar</button>
                   </div>
